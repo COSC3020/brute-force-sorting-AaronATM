@@ -12,8 +12,6 @@ function permutationSort(a)
         c[i] = 0;
     }
 
-    console.log(a);
-
     for (let i = 1; i < a.length; i) 
     {
         if (sorted == true)
