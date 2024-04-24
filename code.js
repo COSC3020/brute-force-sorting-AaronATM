@@ -3,10 +3,8 @@
 
 function permutationSort(a) 
 {
-    var permutations = 0, sorted = false;
-    
+    var permutations = 0, sorted = checkSorted(a);
     var c = [];
-
     for (let i = 0; i < a.length; i++) 
     {
         c[i] = 0;
@@ -18,26 +16,28 @@ function permutationSort(a)
         {
             break;
         }
-
-        if (c[i] < i) 
+        else
         {
-            if (i % 2 == 0)
+            if (c[i] < i) 
             {
-                swap(a, 0, i);
-            } else {
-                swap(a, c[i], i);
+                if (i % 2 == 0)
+                {
+                    swap(a, 0, i);
+                } else {
+                    swap(a, c[i], i);
+                }
+            
+                c[i] += 1;
+                i = 1;
+            } else 
+            {
+                c[i] = 0;
+                i += 1;
             }
-        
-            c[i] += 1;
-            i = 1;
-        } else 
-        {
-            c[i] = 0;
-            i += 1;
-        }
 
-        permutations++;
-        sorted = checkSorted(a);
+            permutations++;
+            sorted = checkSorted(a);
+        }
     }
 
     return permutations;
