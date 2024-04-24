@@ -1,17 +1,44 @@
-// using Heap's algorithm for generating permutations
-// https://www.geeksforgeeks.org/heaps-algorithm-for-generating-permutations/
+// using iterative version of Heap's algorithm for generating permutations
+// https://en.wikipedia.org/wiki/Heap%27s_algorithm
 
 function permutationSort(a) 
 {
     var permutations = 0, sorted = false;
     
-    while (!sorted)
+    var c = [];
+
+    for (let i = 0; i < a.length; i++) 
     {
-        if (a.length <= 1) { sorted = true; }
-        else { heapPerm(a, a.length, a.length); }
+        c[i] = 0;
+    }
+
+    console.log(a);
+
+    for (let i = 1; i < a.length; i) 
+    {
+        if (sorted == true)
+        {
+            break;
+        }
+
+        if (c[i] < i) 
+        {
+            if (i % 2 == 0)
+            {
+                swap(a, 0, i);
+            } else {
+                swap(a, c[i], i);
+            }
+        
+            c[i] += 1;
+            i = 1;
+        } else 
+        {
+            c[i] = 0;
+            i += 1;
+        }
 
         permutations++;
-        console.log(a);
         sorted = checkSorted(a);
     }
 
@@ -31,31 +58,9 @@ function checkSorted(a)
     return true;
 }
 
-function heapPerm(a, size, n)
+function swap(arr, item1, item2)
 {
-        if (size == 1)
-            return;
-  
-        for (let i = 0; i < size; i++) 
-        {
-            heapPerm(a, size - 1, n);
-  
-            if (size % 2 == 1) 
-            {
-                let temp = a[0];
-                a[0] = a[size - 1];
-                a[size - 1] = temp;
-            }
-            else 
-            {
-                let temp = a[i];
-                a[i] = a[size - 1];
-                a[size - 1] = temp;
-            }
-        }
+    var tmp = arr[item1];
+	arr[item1] = arr[item2];
+	arr[item2] = tmp;
 }
-
-input = [12, 0, 2, 8, -1];
-
-perms = permutationSort(input);
-console.log(perms);
