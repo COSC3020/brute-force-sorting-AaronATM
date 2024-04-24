@@ -26,4 +26,4 @@ Best case runtime: $\Theta (n)$
 
 Worst case runtime: $\Theta (n*n!)$
 
-Reasoning:  In the best case, the array that is given is already sorted, and the checkSorted (time complexity of $\Theta (n)$ because it goes through the entire array) function would run once and the program would end. In the worst case it takes as long as it takes to find the permutation that makes the array sorted, which is a time complexity of $\Theta (n!)$
+Reasoning:  In the best case, the array that is given is already sorted, and the checkSorted (time complexity of $\Theta (n)$ because it goes through the entire array) function would run once and the program would end. In the worst case it takes as long as it takes to find the permutation that makes the array sorted, which is a time complexity of $\Theta (n!)$, and after each permutation it needs to run checkSorted which has a time complexity of $\Theta (n)$
